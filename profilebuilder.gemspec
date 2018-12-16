@@ -19,6 +19,11 @@ Gem::Specification.new() do |s|
     s.homepage      = 'https://github.com/drbayer/profilebuilder'
     s.license       = 'MIT'
 
+    s.add_runtime_dependency 'date', '~>1.0'
+    s.add_runtime_dependency 'fileutils', '~>1.0'
+    s.add_runtime_dependency 'json', '~>2.1'
     s.add_runtime_dependency 'parseconfig', '~>1.0'
+
+    s.add_development_dependency 'rspec', '~>3.8'
 end
 

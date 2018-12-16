@@ -1,0 +1,4 @@
+[shell]
+    exclude = *
+    include = .profile, .git
+

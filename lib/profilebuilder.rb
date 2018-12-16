@@ -15,13 +15,12 @@ module ProfileBuilder
             ret
         end
 
-        def get_config
+        def get_config(section)
             require 'parseconfig'
 
-            cfg = self.class.name.downcase
             fullconfig = ParseConfig.new(CONFIG)
             config = {}
-            config = fullconfig[cfg] if fullconfig.get_params.include?(cfg)
+            config = fullconfig[section] if fullconfig.get_params.include?(section)
             config
         end
     end
@@ -59,7 +58,7 @@ class Profile
 
     def initialize
         @shell = Shell.new
-        @homebrew = HomeBrew.new
+        @homebrew = Profile::HomeBrew.new
     end
 
     def shell

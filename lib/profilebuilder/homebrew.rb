@@ -1,26 +1,31 @@
 
-class HomeBrew < JSONable
+class Profile::HomeBrew < JSONable
     include ProfileBuilder
+
+    attr_reader :casks
+    attr_reader :formulae
 
     def record
         @installed = self.installed?
         if @installed
-            @casks = self.casks
-            @formulae = self.formulae
+            @casks = self.get_casks
+            @formulae = self.get_formulae
         end
     end
 
     def installed?
-        path = HomeBrew.which('brew')
+        path = Profile::HomeBrew.which('brew')
         installed = path.empty? ? false : true
         installed
     end
 
-    def casks
+    protected
+
+    def get_casks
         %x(brew cask list).split("\n")
     end
 
-    def formulae
+    def get_formulae
         %x(brew list).split("\n")
     end
 
